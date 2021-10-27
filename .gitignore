@@ -2,3 +2,4 @@ examples/glove
 examples/fasttext
 env/
 data/downstream/COCO/
+.ipynb_checkpoints
