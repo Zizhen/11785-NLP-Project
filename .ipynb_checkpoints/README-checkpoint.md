@@ -5,4 +5,5 @@
 ./set-env.sh
 
 cd examples
+
 python bow.py
