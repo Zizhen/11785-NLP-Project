@@ -1,0 +1,14 @@
+2021-10-26 19:55:56,749 : ***** Transfer task : MRPC *****
+
+
+2021-10-26 19:56:01,923 : Found 18611 words with word vectors, out of         19556 words
+2021-10-26 19:56:01,923 : Computing embedding for train
+2021-10-26 19:57:04,811 : Computed train embeddings
+2021-10-26 19:57:04,811 : Computing embedding for test
+2021-10-26 19:57:30,333 : Computed test embeddings
+2021-10-26 19:57:30,429 : Training pytorch-MLP-nhid0-rmsprop-bs128 with 5-fold cross-validation
+2021-10-26 19:57:35,674 : [('reg:1e-05', 73.01), ('reg:0.0001', 72.91), ('reg:0.001', 72.91), ('reg:0.01', 71.42)]
+2021-10-26 19:57:35,674 : Cross-validation : best param found is reg = 1e-05             with score 73.01
+2021-10-26 19:57:35,674 : Evaluating...
+2021-10-26 19:57:36,031 : Dev acc : 73.01 Test acc 74.67; Test F1 82.95 for MRPC.
+

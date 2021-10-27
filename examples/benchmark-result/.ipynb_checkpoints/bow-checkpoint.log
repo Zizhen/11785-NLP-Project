@@ -1,0 +1,341 @@
+2021-10-22 20:15:59,192 : ***** Transfer task : STS12 *****
+
+
+2021-10-22 20:16:03,936 : Found 7801 words with word vectors, out of         8130 words
+2021-10-22 20:16:04,056 : MSRpar : pearson = 0.4250, spearman = 0.4514
+2021-10-22 20:16:04,141 : MSRvid : pearson = 0.6621, spearman = 0.6750
+2021-10-22 20:16:04,198 : SMTeuroparl : pearson = 0.4913, spearman = 0.5877
+2021-10-22 20:16:04,286 : surprise.OnWN : pearson = 0.5703, spearman = 0.6106
+2021-10-22 20:16:04,337 : surprise.SMTnews : pearson = 0.4627, spearman = 0.3392
+2021-10-22 20:16:04,337 : ALL (weighted average) : Pearson = 0.5319,             Spearman = 0.5495
+2021-10-22 20:16:04,338 : ALL (average) : Pearson = 0.5223,             Spearman = 0.5328
+
+2021-10-22 20:16:04,338 : ***** Transfer task : STS13 (-SMT) *****
+
+
+2021-10-22 20:16:08,769 : Found 4968 words with word vectors, out of         5155 words
+2021-10-22 20:16:08,802 : FNWN : pearson = 0.3821, spearman = 0.3657
+2021-10-22 20:16:08,889 : headlines : pearson = 0.6340, spearman = 0.6313
+2021-10-22 20:16:08,954 : OnWN : pearson = 0.4720, spearman = 0.5257
+2021-10-22 20:16:08,954 : ALL (weighted average) : Pearson = 0.5417,             Spearman = 0.5583
+2021-10-22 20:16:08,954 : ALL (average) : Pearson = 0.4960,             Spearman = 0.5076
+
+2021-10-22 20:16:08,954 : ***** Transfer task : STS14 *****
+
+
+2021-10-22 20:16:13,592 : Found 8608 words with word vectors, out of         9120 words
+2021-10-22 20:16:13,650 : deft-forum : pearson = 0.3002, spearman = 0.3472
+2021-10-22 20:16:13,693 : deft-news : pearson = 0.6495, spearman = 0.6456
+2021-10-22 20:16:13,781 : headlines : pearson = 0.5867, spearman = 0.5510
+2021-10-22 20:16:13,871 : images : pearson = 0.6240, spearman = 0.6127
+2021-10-22 20:16:13,960 : OnWN : pearson = 0.5771, spearman = 0.6435
+2021-10-22 20:16:14,055 : tweet-news : pearson = 0.5384, spearman = 0.5379
+2021-10-22 20:16:14,055 : ALL (weighted average) : Pearson = 0.5532,             Spearman = 0.5623
+2021-10-22 20:16:14,055 : ALL (average) : Pearson = 0.5460,             Spearman = 0.5563
+
+2021-10-22 20:16:14,055 : ***** Transfer task : STS15 *****
+
+
+2021-10-22 20:16:18,634 : Found 7091 words with word vectors, out of         7367 words
+2021-10-22 20:16:18,690 : answers-forums : pearson = 0.3671, spearman = 0.3698
+2021-10-22 20:16:18,779 : answers-students : pearson = 0.6407, spearman = 0.6825
+2021-10-22 20:16:18,831 : belief : pearson = 0.4522, spearman = 0.5278
+2021-10-22 20:16:18,918 : headlines : pearson = 0.6620, spearman = 0.6620
+2021-10-22 20:16:19,008 : images : pearson = 0.6909, spearman = 0.7187
+2021-10-22 20:16:19,009 : ALL (weighted average) : Pearson = 0.6008,             Spearman = 0.6280
+2021-10-22 20:16:19,009 : ALL (average) : Pearson = 0.5626,             Spearman = 0.5922
+
+2021-10-22 20:16:19,009 : ***** Transfer task : STS16 *****
+
+
+2021-10-22 20:16:23,345 : Found 3838 words with word vectors, out of         3974 words
+2021-10-22 20:16:23,379 : answer-answer : pearson = 0.4012, spearman = 0.4253
+2021-10-22 20:16:23,409 : headlines : pearson = 0.6138, spearman = 0.6588
+2021-10-22 20:16:23,440 : plagiarism : pearson = 0.5442, spearman = 0.5590
+2021-10-22 20:16:23,475 : postediting : pearson = 0.5390, spearman = 0.7176
+2021-10-22 20:16:23,502 : question-question : pearson = 0.4721, spearman = 0.5331
+2021-10-22 20:16:23,502 : ALL (weighted average) : Pearson = 0.5144,             Spearman = 0.5794
+2021-10-22 20:16:23,502 : ALL (average) : Pearson = 0.5141,             Spearman = 0.5788
+
+2021-10-22 20:16:23,502 : ***** Transfer task : MR *****
+
+
+2021-10-22 20:16:28,611 : Found 18490 words with word vectors, out of         20328 words
+2021-10-22 20:16:28,621 : Generating sentence embeddings
+2021-10-22 20:16:29,060 : Generated sentence embeddings
+2021-10-22 20:16:29,060 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-22 20:16:43,370 : Best param found at split 1: l2reg = 0.0001                 with score 78.05
+2021-10-22 20:16:54,713 : Best param found at split 2: l2reg = 1e-05                 with score 77.9
+2021-10-22 20:17:05,081 : Best param found at split 3: l2reg = 1e-05                 with score 77.63
+2021-10-22 20:17:14,913 : Best param found at split 4: l2reg = 1e-05                 with score 77.53
+2021-10-22 20:17:25,787 : Best param found at split 5: l2reg = 0.0001                 with score 77.36
+2021-10-22 20:17:26,363 : Dev acc : 77.69 Test acc : 77.1
+
+2021-10-22 20:17:26,365 : ***** Transfer task : CR *****
+
+
+2021-10-22 20:17:30,826 : Found 5477 words with word vectors, out of         5677 words
+2021-10-22 20:17:30,837 : Generating sentence embeddings
+2021-10-22 20:17:30,974 : Generated sentence embeddings
+2021-10-22 20:17:30,975 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-22 20:17:35,092 : Best param found at split 1: l2reg = 0.001                 with score 79.5
+2021-10-22 20:17:39,886 : Best param found at split 2: l2reg = 1e-05                 with score 80.17
+2021-10-22 20:17:44,038 : Best param found at split 3: l2reg = 1e-05                 with score 79.44
+2021-10-22 20:17:48,427 : Best param found at split 4: l2reg = 0.0001                 with score 80.0
+2021-10-22 20:17:52,772 : Best param found at split 5: l2reg = 1e-05                 with score 80.36
+2021-10-22 20:17:52,962 : Dev acc : 79.89 Test acc : 78.78
+
+2021-10-22 20:17:52,963 : ***** Transfer task : MPQA *****
+
+
+2021-10-22 20:17:57,410 : Found 6202 words with word vectors, out of         6241 words
+2021-10-22 20:17:57,442 : Generating sentence embeddings
+2021-10-22 20:17:57,618 : Generated sentence embeddings
+2021-10-22 20:17:57,619 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-22 20:18:06,760 : Best param found at split 1: l2reg = 0.001                 with score 88.01
+2021-10-22 20:18:16,466 : Best param found at split 2: l2reg = 0.001                 with score 86.94
+2021-10-22 20:18:25,303 : Best param found at split 3: l2reg = 0.0001                 with score 87.65
+2021-10-22 20:18:34,859 : Best param found at split 4: l2reg = 0.001                 with score 87.46
+2021-10-22 20:18:44,968 : Best param found at split 5: l2reg = 0.001                 with score 87.51
+2021-10-22 20:18:45,429 : Dev acc : 87.51 Test acc : 87.59
+
+2021-10-22 20:18:45,430 : ***** Transfer task : SUBJ *****
+
+
+2021-10-22 20:18:50,603 : Found 20798 words with word vectors, out of         22639 words
+2021-10-22 20:18:50,613 : Generating sentence embeddings
+2021-10-22 20:18:51,050 : Generated sentence embeddings
+2021-10-22 20:18:51,050 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-22 20:19:01,581 : Best param found at split 1: l2reg = 1e-05                 with score 91.45
+2021-10-22 20:19:12,708 : Best param found at split 2: l2reg = 0.0001                 with score 91.59
+2021-10-22 20:19:24,172 : Best param found at split 3: l2reg = 1e-05                 with score 91.94
+2021-10-22 20:19:35,426 : Best param found at split 4: l2reg = 1e-05                 with score 91.71
+2021-10-22 20:19:45,777 : Best param found at split 5: l2reg = 0.0001                 with score 91.36
+2021-10-22 20:19:46,246 : Dev acc : 91.61 Test acc : 91.07
+
+2021-10-22 20:19:46,248 : ***** Transfer task : SST Binary classification *****
+
+
+2021-10-22 20:19:51,513 : Found 16530 words with word vectors, out of         17561 words
+2021-10-22 20:19:51,521 : Computing embedding for train
+2021-10-22 20:19:53,424 : Computed train embeddings
+2021-10-22 20:19:53,424 : Computing embedding for dev
+2021-10-22 20:19:53,468 : Computed dev embeddings
+2021-10-22 20:19:53,468 : Computing embedding for test
+2021-10-22 20:19:53,535 : Computed test embeddings
+2021-10-22 20:19:53,536 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:20:12,934 : [('reg:1e-05', 79.24), ('reg:0.0001', 79.59), ('reg:0.001', 78.9), ('reg:0.01', 77.29)]
+2021-10-22 20:20:12,934 : Validation : best param found is reg = 0.0001 with score             79.59
+2021-10-22 20:20:12,934 : Evaluating...
+2021-10-22 20:20:17,499 : 
+Dev acc : 79.59 Test acc : 79.68 for             SST Binary classification
+
+2021-10-22 20:20:17,500 : ***** Transfer task : SST Fine-Grained classification *****
+
+
+2021-10-22 20:20:22,664 : Found 18243 words with word vectors, out of         19539 words
+2021-10-22 20:20:22,670 : Computing embedding for train
+2021-10-22 20:20:22,994 : Computed train embeddings
+2021-10-22 20:20:22,994 : Computing embedding for dev
+2021-10-22 20:20:23,037 : Computed dev embeddings
+2021-10-22 20:20:23,037 : Computing embedding for test
+2021-10-22 20:20:23,121 : Computed test embeddings
+2021-10-22 20:20:23,121 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:20:25,541 : [('reg:1e-05', 43.78), ('reg:0.0001', 43.96), ('reg:0.001', 43.32), ('reg:0.01', 40.33)]
+2021-10-22 20:20:25,541 : Validation : best param found is reg = 0.0001 with score             43.96
+2021-10-22 20:20:25,541 : Evaluating...
+2021-10-22 20:20:26,271 : 
+Dev acc : 43.96 Test acc : 43.8 for             SST Fine-Grained classification
+
+2021-10-22 20:20:26,272 : ***** Transfer task : TREC *****
+
+
+2021-10-22 20:20:30,968 : Found 9548 words with word vectors, out of         9767 words
+2021-10-22 20:20:31,118 : Computed train embeddings
+2021-10-22 20:20:31,129 : Computed test embeddings
+2021-10-22 20:20:31,129 : Training pytorch-MLP-nhid0-rmsprop-bs128 with 5-fold cross-validation
+2021-10-22 20:20:37,703 : [('reg:1e-05', 73.2), ('reg:0.0001', 72.87), ('reg:0.001', 71.55), ('reg:0.01', 63.65)]
+2021-10-22 20:20:37,703 : Cross-validation : best param found is reg = 1e-05             with score 73.2
+2021-10-22 20:20:37,703 : Evaluating...
+2021-10-22 20:20:38,203 : 
+Dev acc : 73.2 Test acc : 82.8             for TREC
+
+2021-10-22 20:20:38,203 : ***** Transfer task : MRPC *****
+
+
+2021-10-22 20:20:43,372 : Found 18611 words with word vectors, out of         19556 words
+2021-10-22 20:20:43,376 : Computing embedding for train
+2021-10-22 20:20:43,716 : Computed train embeddings
+2021-10-22 20:20:43,716 : Computing embedding for test
+2021-10-22 20:20:43,859 : Computed test embeddings
+2021-10-22 20:20:43,878 : Training pytorch-MLP-nhid0-rmsprop-bs128 with 5-fold cross-validation
+2021-10-22 20:20:47,801 : [('reg:1e-05', 73.06), ('reg:0.0001', 72.96), ('reg:0.001', 73.09), ('reg:0.01', 72.4)]
+2021-10-22 20:20:47,802 : Cross-validation : best param found is reg = 0.001             with score 73.09
+2021-10-22 20:20:47,802 : Evaluating...
+2021-10-22 20:20:48,045 : Dev acc : 73.09 Test acc 70.78; Test F1 77.58 for MRPC.
+
+2021-10-22 20:20:48,046 : ***** Transfer task : SICK-Entailment*****
+
+
+2021-10-22 20:20:52,410 : Found 2409 words with word vectors, out of         2414 words
+2021-10-22 20:20:52,417 : Computing embedding for train
+2021-10-22 20:20:52,639 : Computed train embeddings
+2021-10-22 20:20:52,640 : Computing embedding for dev
+2021-10-22 20:20:52,665 : Computed dev embeddings
+2021-10-22 20:20:52,665 : Computing embedding for test
+2021-10-22 20:20:52,906 : Computed test embeddings
+2021-10-22 20:20:52,943 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:20:54,353 : [('reg:1e-05', 81.0), ('reg:0.0001', 81.0), ('reg:0.001', 78.6), ('reg:0.01', 72.2)]
+2021-10-22 20:20:54,354 : Validation : best param found is reg = 1e-05 with score             81.0
+2021-10-22 20:20:54,354 : Evaluating...
+2021-10-22 20:20:54,800 : 
+Dev acc : 81.0 Test acc : 78.69 for                        SICK entailment
+
+2021-10-22 20:20:54,801 : ***** Transfer task : SICK-Relatedness*****
+
+
+2021-10-22 20:20:59,183 : Found 2409 words with word vectors, out of         2414 words
+2021-10-22 20:20:59,185 : Computing embedding for train
+2021-10-22 20:20:59,405 : Computed train embeddings
+2021-10-22 20:20:59,405 : Computing embedding for dev
+2021-10-22 20:20:59,431 : Computed dev embeddings
+2021-10-22 20:20:59,431 : Computing embedding for test
+2021-10-22 20:20:59,671 : Computed test embeddings
+2021-10-22 20:21:21,173 : Dev : Pearson 0.7972529691542777
+2021-10-22 20:21:21,173 : Test : Pearson 0.7992439105243779 Spearman 0.7182568945420166 MSE 0.36767970736713596                        for SICK Relatedness
+
+2021-10-22 20:21:21,176 : 
+
+***** Transfer task : STSBenchmark*****
+
+
+2021-10-22 20:21:26,174 : Found 14729 words with word vectors, out of         15891 words
+2021-10-22 20:21:26,176 : Computing embedding for train
+2021-10-22 20:21:26,500 : Computed train embeddings
+2021-10-22 20:21:26,500 : Computing embedding for dev
+2021-10-22 20:21:26,590 : Computed dev embeddings
+2021-10-22 20:21:26,590 : Computing embedding for test
+2021-10-22 20:21:26,668 : Computed test embeddings
+2021-10-22 20:21:44,724 : Dev : Pearson 0.7324296030441203
+2021-10-22 20:21:44,724 : Test : Pearson 0.6478516064444507 Spearman 0.6296343353219274 MSE 1.5695413901261221                        for SICK Relatedness
+
+2021-10-22 20:21:44,725 : ***** (Probing) Transfer task : LENGTH classification *****
+2021-10-22 20:21:45,202 : Loaded 99996 train - 9996 dev - 9996 test for Length
+2021-10-22 20:21:51,471 : Found 36849 words with word vectors, out of         36851 words
+2021-10-22 20:21:51,479 : Computing embeddings for train/dev/test
+2021-10-22 20:21:56,100 : Computed embeddings
+2021-10-22 20:21:56,100 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:22:22,276 : [('reg:1e-05', 58.18), ('reg:0.0001', 54.58), ('reg:0.001', 48.08), ('reg:0.01', 36.98)]
+2021-10-22 20:22:22,277 : Validation : best param found is reg = 1e-05 with score             58.18
+2021-10-22 20:22:22,277 : Evaluating...
+2021-10-22 20:22:30,089 : 
+Dev acc : 58.2 Test acc : 59.3 for LENGTH classification
+
+2021-10-22 20:22:30,091 : ***** (Probing) Transfer task : WORDCONTENT classification *****
+2021-10-22 20:22:30,612 : Loaded 100000 train - 10000 dev - 10000 test for WordContent
+2021-10-22 20:22:37,069 : Found 40109 words with word vectors, out of         40111 words
+2021-10-22 20:22:37,083 : Computing embeddings for train/dev/test
+2021-10-22 20:22:41,579 : Computed embeddings
+2021-10-22 20:22:41,579 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:23:06,068 : [('reg:1e-05', 74.87), ('reg:0.0001', 27.73), ('reg:0.001', 1.29), ('reg:0.01', 0.6)]
+2021-10-22 20:23:06,068 : Validation : best param found is reg = 1e-05 with score             74.87
+2021-10-22 20:23:06,068 : Evaluating...
+2021-10-22 20:23:14,751 : 
+Dev acc : 74.9 Test acc : 74.8 for WORDCONTENT classification
+
+2021-10-22 20:23:14,754 : ***** (Probing) Transfer task : DEPTH classification *****
+2021-10-22 20:23:15,269 : Loaded 100000 train - 10000 dev - 10000 test for Depth
+2021-10-22 20:23:21,547 : Found 37070 words with word vectors, out of         37072 words
+2021-10-22 20:23:21,562 : Computing embeddings for train/dev/test
+2021-10-22 20:23:25,702 : Computed embeddings
+2021-10-22 20:23:25,702 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:23:46,038 : [('reg:1e-05', 30.85), ('reg:0.0001', 30.55), ('reg:0.001', 27.97), ('reg:0.01', 23.32)]
+2021-10-22 20:23:46,038 : Validation : best param found is reg = 1e-05 with score             30.85
+2021-10-22 20:23:46,038 : Evaluating...
+2021-10-22 20:23:50,781 : 
+Dev acc : 30.9 Test acc : 30.2 for DEPTH classification
+
+2021-10-22 20:23:50,783 : ***** (Probing) Transfer task : TOPCONSTITUENTS classification *****
+2021-10-22 20:23:51,302 : Loaded 100000 train - 10000 dev - 10000 test for TopConstituents
+2021-10-22 20:23:57,646 : Found 37442 words with word vectors, out of         37444 words
+2021-10-22 20:23:57,660 : Computing embeddings for train/dev/test
+2021-10-22 20:24:01,599 : Computed embeddings
+2021-10-22 20:24:01,599 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:24:32,897 : [('reg:1e-05', 61.44), ('reg:0.0001', 58.66), ('reg:0.001', 47.47), ('reg:0.01', 25.61)]
+2021-10-22 20:24:32,898 : Validation : best param found is reg = 1e-05 with score             61.44
+2021-10-22 20:24:32,898 : Evaluating...
+2021-10-22 20:24:41,426 : 
+Dev acc : 61.4 Test acc : 61.5 for TOPCONSTITUENTS classification
+
+2021-10-22 20:24:41,428 : ***** (Probing) Transfer task : BIGRAMSHIFT classification *****
+2021-10-22 20:24:42,132 : Loaded 100000 train - 10000 dev - 10000 test for BigramShift
+2021-10-22 20:24:48,492 : Found 38687 words with word vectors, out of         38690 words
+2021-10-22 20:24:48,507 : Computing embeddings for train/dev/test
+2021-10-22 20:24:52,879 : Computed embeddings
+2021-10-22 20:24:52,879 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:25:12,049 : [('reg:1e-05', 50.33), ('reg:0.0001', 50.35), ('reg:0.001', 50.25), ('reg:0.01', 50.2)]
+2021-10-22 20:25:12,049 : Validation : best param found is reg = 0.0001 with score             50.35
+2021-10-22 20:25:12,049 : Evaluating...
+2021-10-22 20:25:17,001 : 
+Dev acc : 50.4 Test acc : 50.0 for BIGRAMSHIFT classification
+
+2021-10-22 20:25:17,003 : ***** (Probing) Transfer task : TENSE classification *****
+2021-10-22 20:25:17,528 : Loaded 100000 train - 10000 dev - 10000 test for Tense
+2021-10-22 20:25:23,878 : Found 38615 words with word vectors, out of         38618 words
+2021-10-22 20:25:23,896 : Computing embeddings for train/dev/test
+2021-10-22 20:25:28,062 : Computed embeddings
+2021-10-22 20:25:28,062 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:25:55,516 : [('reg:1e-05', 85.16), ('reg:0.0001', 85.44), ('reg:0.001', 85.5), ('reg:0.01', 83.54)]
+2021-10-22 20:25:55,517 : Validation : best param found is reg = 0.001 with score             85.5
+2021-10-22 20:25:55,518 : Evaluating...
+2021-10-22 20:26:01,234 : 
+Dev acc : 85.5 Test acc : 83.7 for TENSE classification
+
+2021-10-22 20:26:01,236 : ***** (Probing) Transfer task : SUBJNUMBER classification *****
+2021-10-22 20:26:01,779 : Loaded 100000 train - 10000 dev - 10000 test for SubjNumber
+2021-10-22 20:26:08,480 : Found 41297 words with word vectors, out of         41300 words
+2021-10-22 20:26:08,495 : Computing embeddings for train/dev/test
+2021-10-22 20:26:12,770 : Computed embeddings
+2021-10-22 20:26:12,770 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:26:35,891 : [('reg:1e-05', 79.37), ('reg:0.0001', 79.3), ('reg:0.001', 79.22), ('reg:0.01', 77.99)]
+2021-10-22 20:26:35,892 : Validation : best param found is reg = 1e-05 with score             79.37
+2021-10-22 20:26:35,892 : Evaluating...
+2021-10-22 20:26:41,878 : 
+Dev acc : 79.4 Test acc : 78.0 for SUBJNUMBER classification
+
+2021-10-22 20:26:41,880 : ***** (Probing) Transfer task : OBJNUMBER classification *****
+2021-10-22 20:26:42,406 : Loaded 100000 train - 10000 dev - 10000 test for ObjNumber
+2021-10-22 20:26:49,024 : Found 40855 words with word vectors, out of         40858 words
+2021-10-22 20:26:49,040 : Computing embeddings for train/dev/test
+2021-10-22 20:26:53,485 : Computed embeddings
+2021-10-22 20:26:53,485 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:27:25,775 : [('reg:1e-05', 75.55), ('reg:0.0001', 75.72), ('reg:0.001', 75.46), ('reg:0.01', 70.16)]
+2021-10-22 20:27:25,775 : Validation : best param found is reg = 0.0001 with score             75.72
+2021-10-22 20:27:25,775 : Evaluating...
+2021-10-22 20:27:34,284 : 
+Dev acc : 75.7 Test acc : 76.5 for OBJNUMBER classification
+
+2021-10-22 20:27:34,286 : ***** (Probing) Transfer task : ODDMANOUT classification *****
+2021-10-22 20:27:34,814 : Loaded 100000 train - 10000 dev - 10000 test for OddManOut
+2021-10-22 20:27:41,453 : Found 46204 words with word vectors, out of         46206 words
+2021-10-22 20:27:41,469 : Computing embeddings for train/dev/test
+2021-10-22 20:27:46,368 : Computed embeddings
+2021-10-22 20:27:46,368 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:28:14,929 : [('reg:1e-05', 50.24), ('reg:0.0001', 50.19), ('reg:0.001', 50.22), ('reg:0.01', 50.44)]
+2021-10-22 20:28:14,929 : Validation : best param found is reg = 0.01 with score             50.44
+2021-10-22 20:28:14,930 : Evaluating...
+2021-10-22 20:28:22,731 : 
+Dev acc : 50.4 Test acc : 49.8 for ODDMANOUT classification
+
+2021-10-22 20:28:22,733 : ***** (Probing) Transfer task : COORDINATIONINVERSION classification *****
+2021-10-22 20:28:23,281 : Loaded 100002 train - 10002 dev - 10002 test for CoordinationInversion
+2021-10-22 20:28:29,762 : Found 36655 words with word vectors, out of         36664 words
+2021-10-22 20:28:29,780 : Computing embeddings for train/dev/test
+2021-10-22 20:28:34,513 : Computed embeddings
+2021-10-22 20:28:34,513 : Training pytorch-MLP-nhid0-rmsprop-bs128 with standard validation..
+2021-10-22 20:29:00,582 : [('reg:1e-05', 53.54), ('reg:0.0001', 53.61), ('reg:0.001', 53.17), ('reg:0.01', 50.7)]
+2021-10-22 20:29:00,582 : Validation : best param found is reg = 0.0001 with score             53.61
+2021-10-22 20:29:00,582 : Evaluating...
+2021-10-22 20:29:07,249 : 
+Dev acc : 53.6 Test acc : 53.6 for COORDINATIONINVERSION classification
+
