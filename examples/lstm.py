@@ -14,12 +14,8 @@ import numpy as np
 import logging
 from allennlp_models import pretrained
 
-logging.getLogger('allennlp.predictors.predictor').disabled = True 
-logging.getLogger('allennlp.common.params').disabled = True 
-logging.getLogger('allennlp.common.model_card').disabled = True 
-logging.getLogger('allennlp.nn.initializers').disabled = True 
-logging.getLogger('allennlp.modules.token_embedders.embedding').setLevel(logging.INFO) 
-logging.getLogger('urllib3.connectionpool').disabled = True 
+for k,v in logging.root.manager.loggerDict.items():
+    logging.getLogger(k).disabled = True
 
 
 # Set PATHs
@@ -85,17 +81,6 @@ def prepare(params, samples):
     params.wvec_dim = 300
     return
 
-def silence_func(func):
-    def wrapper(*args, **kwargs):
-        save_stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")
-        output = func(*args, **kwargs)
-        sys.stdout = save_stdout
-        return output
-
-    return wrapper
-
-@silence_func
 def batcher(params, batch):
     
     batch = [sent if sent != [] else ['.'] for sent in batch]
@@ -116,9 +101,9 @@ def batcher(params, batch):
         sentvec = np.array(embedding)[0]
 
         
-        print(len(sentvec))
+        # print(len(sentvec))
         sentvec = np.mean(sentvec, 0)
-        print(sentvec.shape)
+        # print(sentvec.shape)
         embeddings.append(sentvec)
 
     embeddings = np.vstack(embeddings)
@@ -142,12 +127,12 @@ if __name__ == "__main__":
 
     se = senteval.engine.SE(params_senteval, batcher)
 
-    transfer_tasks = ['STS12', 'STS13', 'STS14', 'STS15', 'STS16',
-                      'MR', 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC', 'MRPC',
-                      'SICKEntailment', 'SICKRelatedness', 'STSBenchmark',
-                      'Length', 'WordContent', 'Depth', 'TopConstituents',
-                      'BigramShift', 'Tense', 'SubjNumber', 'ObjNumber',
-                      'OddManOut', 'CoordinationInversion']
+    # transfer_tasks = ['STS12', 'STS13', 'STS14', 'STS15', 'STS16',
+    #                   'MR', 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC', 'MRPC',
+    #                   'SICKEntailment', 'SICKRelatedness', 'STSBenchmark',
+    #                   'Length', 'WordContent', 'Depth', 'TopConstituents',
+    #                   'BigramShift', 'Tense', 'SubjNumber', 'ObjNumber',
+    #                   'OddManOut', 'CoordinationInversion']
 
     transfer_tasks = ['MRPC']
     results = se.eval(transfer_tasks)
