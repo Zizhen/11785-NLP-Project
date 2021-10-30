@@ -86,7 +86,7 @@ def batcher(params, batch):
     batch = [sent if sent != [] else ['.'] for sent in batch]
     embeddings = []
 
-    predictor = pretrained.load_predictor('tagging-fine-grained-crf-tagger')
+    predictor = pretrained.load_predictor('')
 
     for sent in batch:
         # print(' '.join(sent))
@@ -105,6 +105,8 @@ def batcher(params, batch):
         sentvec = np.mean(sentvec, 0)
         # print(sentvec.shape)
         embeddings.append(sentvec)
+        # print("1 sentence done")
+    print("1 batch done")
 
     embeddings = np.vstack(embeddings)
     return embeddings
@@ -118,7 +120,7 @@ params_senteval['classifier'] = {'nhid': 0, 'optim': 'rmsprop', 'batch_size': 12
 # Set up logger
 logging.basicConfig(format='%(asctime)s : %(message)s', level=logging.DEBUG,
 handlers=[
-    logging.FileHandler("benchmark-result/lstm.log"),
+    logging.FileHandler("benchmark-result/lstm-alltasks.log"),
     logging.StreamHandler()
 ])
 
@@ -127,13 +129,13 @@ if __name__ == "__main__":
 
     se = senteval.engine.SE(params_senteval, batcher)
 
-    # transfer_tasks = ['STS12', 'STS13', 'STS14', 'STS15', 'STS16',
-    #                   'MR', 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC', 'MRPC',
-    #                   'SICKEntailment', 'SICKRelatedness', 'STSBenchmark',
-    #                   'Length', 'WordContent', 'Depth', 'TopConstituents',
-    #                   'BigramShift', 'Tense', 'SubjNumber', 'ObjNumber',
-    #                   'OddManOut', 'CoordinationInversion']
+    transfer_tasks = ['STS12', 'STS13', 'STS14', 'STS15', 'STS16',
+                      'MR', 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC', 'MRPC',
+                      'SICKEntailment', 'SICKRelatedness', 'STSBenchmark',
+                      'Length', 'WordContent', 'Depth', 'TopConstituents',
+                      'BigramShift', 'Tense', 'SubjNumber', 'ObjNumber',
+                      'OddManOut', 'CoordinationInversion']
 
-    transfer_tasks = ['MRPC']
+    # transfer_tasks = ['MRPC']
     results = se.eval(transfer_tasks)
     print(results)

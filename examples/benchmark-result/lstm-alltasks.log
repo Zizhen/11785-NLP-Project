@@ -1,0 +1,110 @@
+2021-10-29 05:44:27,732 : ***** Transfer task : STS12 *****
+
+
+2021-10-29 05:56:20,565 : MSRpar : pearson = 0.2641, spearman = 0.3543
+2021-10-29 06:03:10,056 : MSRvid : pearson = 0.1697, spearman = 0.3109
+2021-10-29 06:08:36,066 : SMTeuroparl : pearson = 0.2758, spearman = 0.4270
+2021-10-29 06:15:51,067 : surprise.OnWN : pearson = 0.3983, spearman = 0.3491
+2021-10-29 06:21:01,218 : surprise.SMTnews : pearson = 0.2597, spearman = 0.2685
+2021-10-29 06:21:01,219 : ALL (weighted average) : Pearson = 0.2748,             Spearman = 0.3423
+2021-10-29 06:21:01,219 : ALL (average) : Pearson = 0.2735,             Spearman = 0.3420
+
+2021-10-29 06:21:01,219 : ***** Transfer task : STS13 (-SMT) *****
+
+
+2021-10-29 06:24:25,731 : FNWN : pearson = 0.1930, spearman = 0.2059
+2021-10-29 06:31:23,370 : headlines : pearson = 0.4674, spearman = 0.4873
+2021-10-29 06:36:51,225 : OnWN : pearson = 0.1731, spearman = 0.1734
+2021-10-29 06:36:51,225 : ALL (weighted average) : Pearson = 0.3227,             Spearman = 0.3344
+2021-10-29 06:36:51,225 : ALL (average) : Pearson = 0.2778,             Spearman = 0.2889
+
+2021-10-29 06:36:51,225 : ***** Transfer task : STS14 *****
+
+
+2021-10-29 06:41:46,254 : deft-forum : pearson = 0.0980, spearman = 0.1555
+2021-10-29 06:46:17,423 : deft-news : pearson = 0.5300, spearman = 0.5387
+2021-10-29 06:53:25,520 : headlines : pearson = 0.4247, spearman = 0.4270
+2021-10-29 07:01:21,876 : images : pearson = 0.2834, spearman = 0.3653
+2021-10-29 07:08:47,052 : OnWN : pearson = 0.2030, spearman = 0.2618
+2021-10-29 07:17:31,518 : tweet-news : pearson = 0.3125, spearman = 0.2985
+2021-10-29 07:17:31,518 : ALL (weighted average) : Pearson = 0.2989,             Spearman = 0.3323
+2021-10-29 07:17:31,519 : ALL (average) : Pearson = 0.3086,             Spearman = 0.3411
+
+2021-10-29 07:17:31,520 : ***** Transfer task : STS15 *****
+
+
+2021-10-29 07:22:54,813 : answers-forums : pearson = 0.1624, spearman = 0.2504
+2021-10-29 07:31:10,389 : answers-students : pearson = 0.3960, spearman = 0.4261
+2021-10-29 07:36:20,895 : belief : pearson = 0.1533, spearman = 0.3078
+2021-10-29 07:43:31,413 : headlines : pearson = 0.4838, spearman = 0.4992
+2021-10-29 07:51:33,006 : images : pearson = 0.2370, spearman = 0.3784
+2021-10-29 07:51:33,006 : ALL (weighted average) : Pearson = 0.3186,             Spearman = 0.3957
+2021-10-29 07:51:33,006 : ALL (average) : Pearson = 0.2865,             Spearman = 0.3724
+
+2021-10-29 07:51:33,006 : ***** Transfer task : STS16 *****
+
+
+2021-10-29 07:54:17,424 : answer-answer : pearson = 0.3044, spearman = 0.3654
+2021-10-29 07:56:42,389 : headlines : pearson = 0.4461, spearman = 0.4825
+2021-10-29 07:59:50,875 : plagiarism : pearson = 0.3679, spearman = 0.4572
+2021-10-29 08:03:34,664 : postediting : pearson = 0.3243, spearman = 0.6327
+2021-10-29 08:06:06,958 : question-question : pearson = 0.0141, spearman = 0.0686
+2021-10-29 08:06:06,958 : ALL (weighted average) : Pearson = 0.2994,             Spearman = 0.4105
+2021-10-29 08:06:06,958 : ALL (average) : Pearson = 0.2913,             Spearman = 0.4013
+
+2021-10-29 08:06:06,958 : ***** Transfer task : MR *****
+
+
+2021-10-29 08:06:06,998 : Generating sentence embeddings
+2021-10-29 09:34:06,178 : Generated sentence embeddings
+2021-10-29 09:34:06,179 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-29 09:34:22,702 : Best param found at split 1: l2reg = 1e-05                 with score 70.79
+2021-10-29 09:34:32,872 : Best param found at split 2: l2reg = 1e-05                 with score 69.94
+2021-10-29 09:34:44,362 : Best param found at split 3: l2reg = 1e-05                 with score 70.53
+2021-10-29 09:34:56,046 : Best param found at split 4: l2reg = 1e-05                 with score 70.11
+2021-10-29 09:35:08,157 : Best param found at split 5: l2reg = 1e-05                 with score 70.5
+2021-10-29 09:35:09,141 : Dev acc : 70.37 Test acc : 70.08
+
+2021-10-29 09:35:09,141 : ***** Transfer task : CR *****
+
+
+2021-10-29 09:35:09,153 : Generating sentence embeddings
+2021-10-29 10:05:31,277 : Generated sentence embeddings
+2021-10-29 10:05:31,278 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-29 10:05:35,869 : Best param found at split 1: l2reg = 0.0001                 with score 73.18
+2021-10-29 10:05:40,341 : Best param found at split 2: l2reg = 0.0001                 with score 73.77
+2021-10-29 10:05:44,906 : Best param found at split 3: l2reg = 1e-05                 with score 73.15
+2021-10-29 10:05:49,929 : Best param found at split 4: l2reg = 1e-05                 with score 73.15
+2021-10-29 10:05:54,900 : Best param found at split 5: l2reg = 1e-05                 with score 74.04
+2021-10-29 10:05:55,151 : Dev acc : 73.46 Test acc : 72.0
+
+2021-10-29 10:05:55,151 : ***** Transfer task : MPQA *****
+
+
+2021-10-29 10:05:55,857 : Generating sentence embeddings
+2021-10-29 10:41:58,560 : Generated sentence embeddings
+2021-10-29 10:41:58,561 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-29 10:42:08,517 : Best param found at split 1: l2reg = 1e-05                 with score 83.05
+2021-10-29 10:42:17,264 : Best param found at split 2: l2reg = 1e-05                 with score 81.17
+2021-10-29 10:42:26,744 : Best param found at split 3: l2reg = 1e-05                 with score 81.76
+2021-10-29 10:42:36,476 : Best param found at split 4: l2reg = 0.0001                 with score 82.53
+2021-10-29 10:42:45,383 : Best param found at split 5: l2reg = 1e-05                 with score 81.39
+2021-10-29 10:42:45,993 : Dev acc : 81.98 Test acc : 83.62
+
+2021-10-29 10:42:45,993 : ***** Transfer task : SUBJ *****
+
+
+2021-10-29 10:42:46,027 : Generating sentence embeddings
+2021-10-29 12:14:16,069 : Generated sentence embeddings
+2021-10-29 12:14:16,070 : Training pytorch-MLP-nhid0-rmsprop-bs128 with (inner) 5-fold cross-validation
+2021-10-29 12:14:28,373 : Best param found at split 1: l2reg = 1e-05                 with score 88.46
+2021-10-29 12:14:41,513 : Best param found at split 2: l2reg = 1e-05                 with score 88.69
+2021-10-29 12:14:53,937 : Best param found at split 3: l2reg = 1e-05                 with score 88.92
+2021-10-29 12:15:06,499 : Best param found at split 4: l2reg = 1e-05                 with score 88.92
+2021-10-29 12:15:19,011 : Best param found at split 5: l2reg = 1e-05                 with score 88.49
+2021-10-29 12:15:19,734 : Dev acc : 88.7 Test acc : 88.16
+
+2021-10-29 12:15:19,734 : ***** Transfer task : SST Binary classification *****
+
+
+2021-10-29 12:15:19,855 : Computing embedding for train
