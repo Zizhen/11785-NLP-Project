@@ -14,6 +14,10 @@ import logging
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('sentence-transformers/paraphrase-distilroberta-base-v2')
 model2 = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+# from allennlp_models import pretrained
+# load pretrained lstm
+# predictor = pretrained.load_predictor(
+#     'tagging-fine-grained-crf-tagger', cuda_device=0)
 
 import sklearn
 
@@ -82,6 +86,15 @@ def batcher(params, batch):
     embeddings = []
 
     for sent in batch:
+        # lstm embedding
+#         input = {"sentence": ' '.join(sent)}
+#         with predictor.capture_model_internals('encoder') as internals:
+#             outputs = predictor.predict_json(input)
+#             for k, v in internals.items():
+#                 embedding = v['output']
+
+#         sentvec_lstm = np.array(embedding)[0]
+#         sentvec_lstm = np.mean(sentvec_lstm, 0)
         sentvec_roberta = model.encode(sent)
         sentvec_roberta = np.mean(sentvec_roberta, 0)
 
