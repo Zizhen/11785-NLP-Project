@@ -72,6 +72,7 @@ class PyTorchClassifier(object):
         while not stop_train and self.nepoch <= self.max_epoch:
             self.trainepoch(trainX, trainy, epoch_size=self.epoch_size)
             accuracy = self.score(devX, devy)
+            # print(accuracy)
             if accuracy > bestaccuracy:
                 bestaccuracy = accuracy
                 bestmodel = copy.deepcopy(self.model)
@@ -173,7 +174,6 @@ class MLP(PyTorchClassifier):
         -max_epoch:  max number of epoches
         -dropout:    dropout for MLP
         """
-
         self.nhid = 0 if "nhid" not in params else params["nhid"]
         self.optim = "adam" if "optim" not in params else params["optim"]
         self.tenacity = 5 if "tenacity" not in params else params["tenacity"]

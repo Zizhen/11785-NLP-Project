@@ -17,7 +17,7 @@ import io
 
 from senteval.tools.validation import KFoldClassifier
 
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score, accuracy_score
 
 
 class MRPCEval(object):
@@ -77,28 +77,89 @@ class MRPCEval(object):
             mrpc_embed[key]['y'] = np.array(text_data['y'])
             logging.info('Computed {0} embeddings'.format(key))
 
+        print(mrpc_embed['train']['A'].shape)
+        # clf 1 roberta
         # Train
-        trainA = mrpc_embed['train']['A']
-        trainB = mrpc_embed['train']['B']
-        trainF = np.c_[np.abs(trainA - trainB), trainA * trainB]
-        trainY = mrpc_embed['train']['y']
-
+        trainA_1 = mrpc_embed['train']['A'][:, :768]
+        trainB_1 = mrpc_embed['train']['B'][:, :768]
+        trainF_1 = np.c_[np.abs(trainA_1 - trainB_1), trainA_1 * trainB_1]
+        trainY_1 = mrpc_embed['train']['y']
         # Test
-        testA = mrpc_embed['test']['A']
-        testB = mrpc_embed['test']['B']
-        testF = np.c_[np.abs(testA - testB), testA * testB]
-        testY = mrpc_embed['test']['y']
+        testA_1 = mrpc_embed['test']['A'][:, :768]
+        testB_1 = mrpc_embed['test']['B'][:, :768]
+        testF_1 = np.c_[np.abs(testA_1 - testB_1), testA_1 * testB_1]
+        testY_1 = mrpc_embed['test']['y']
 
-        config = {'nclasses': 2, 'seed': self.seed,
+        config_1 = {'nclasses': 2, 'seed': self.seed,
                   'usepytorch': params.usepytorch,
-                  'classifier': params.classifier,
-                  'nhid': params.nhid, 'kfold': params.kfold}
-        clf = KFoldClassifier(train={'X': trainF, 'y': trainY},
-                              test={'X': testF, 'y': testY}, config=config)
+                  'classifier': {'nhid': 1000, 'optim': 'rmsprop', 'batch_size': 128,
+                                 'tenacity': 3, 'epoch_size': 1, 'dropout': 0.1, 'max_epoch': 200},
+                  'nhid': 1000, 'kfold': params.kfold}
+        clf_1 = KFoldClassifier(train={'X': trainF_1, 'y': trainY_1},
+                              test={'X': testF_1, 'y': testY_1}, config=config_1)
 
-        devacc, testacc, yhat = clf.run()
-        testf1 = round(100*f1_score(testY, yhat), 2)
+        devacc_1, testacc_1, yhat_1 = clf_1.run()
+        print('Dev acc 1: {0} Test acc 1: {1} for MRPC.\n'
+                      .format(devacc_1, testacc_1))
+        
+        # clf 2 mpnet
+        # Train
+        trainA_2 = mrpc_embed['train']['A'][:, 768:1536]
+        trainB_2 = mrpc_embed['train']['B'][:, 768:1536]
+        trainF_2 = np.c_[np.abs(trainA_2 - trainB_2), trainA_2 * trainB_2]
+        trainY_2 = mrpc_embed['train']['y']
+        # Test
+        testA_2 = mrpc_embed['test']['A'][:, 768:1536]
+        testB_2 = mrpc_embed['test']['B'][:, 768:1536]
+        testF_2 = np.c_[np.abs(testA_2 - testB_2), testA_2 * testB_2]
+        testY_2 = mrpc_embed['test']['y']
+
+        config_2 = {'nclasses': 2, 'seed': self.seed,
+                  'usepytorch': params.usepytorch,
+                  'classifier': {'nhid': 1000, 'optim': 'rmsprop', 'batch_size': 128,
+                                 'tenacity': 3, 'epoch_size': 1, 'dropout': 0.1, 'max_epoch': 200},
+                  'nhid': 1000, 'kfold': params.kfold}
+        clf_2 = KFoldClassifier(train={'X': trainF_2, 'y': trainY_2},
+                              test={'X': testF_2, 'y': testY_2}, config=config_2)
+
+        devacc_2, testacc_2, yhat_2 = clf_2.run()
+        print('Dev acc 2: {0} Test acc 2: {1} for MRPC.\n'
+                      .format(devacc_2, testacc_2))
+
+        # clf 3 glove
+        # Train
+        trainA_3 = mrpc_embed['train']['A'][:, 1536:]
+        trainB_3 = mrpc_embed['train']['B'][:, 1536:]
+        trainF_3 = np.c_[np.abs(trainA_3 - trainB_3), trainA_3 * trainB_3]
+        trainY_3 = mrpc_embed['train']['y']
+        # Test
+        testA_3 = mrpc_embed['test']['A'][:, 1536:]
+        testB_3 = mrpc_embed['test']['B'][:, 1536:]
+        testF_3 = np.c_[np.abs(testA_3 - testB_3), testA_3 * testB_3]
+        testY_3 = mrpc_embed['test']['y']
+
+        config_3 = {'nclasses': 2, 'seed': self.seed,
+                  'usepytorch': params.usepytorch,
+                  'classifier': {'nhid': 500, 'optim': 'rmsprop', 'batch_size': 128,
+                                 'tenacity': 3, 'epoch_size': 1, 'dropout': 0.1, 'max_epoch': 200},
+                  'nhid': 600, 'kfold': params.kfold}
+        clf_3 = KFoldClassifier(train={'X': trainF_3, 'y': trainY_3},
+                              test={'X': testF_3, 'y': testY_3}, config=config_3)
+
+        devacc_3, testacc_3, yhat_3 = clf_3.run()
+        print('Dev acc 3: {0} Test acc 3: {1} for MRPC.\n'
+                      .format(devacc_3, testacc_3))
+
+        yhat = []
+        for i in range(len(yhat_1)):
+            summ = yhat_1[i] + yhat_2[i] + yhat_3[i]
+            if summ <= 1:
+                yhat.append(0)
+            else:
+                yhat.append(1)
+        testf1 = round(100*f1_score(testY_1, yhat), 2)
+        testacc = round(100*accuracy_score(testY_1, yhat), 2)
         logging.debug('Dev acc : {0} Test acc {1}; Test F1 {2} for MRPC.\n'
-                      .format(devacc, testacc, testf1))
-        return {'devacc': devacc, 'acc': testacc, 'f1': testf1,
-                'ndev': len(trainA), 'ntest': len(testA)}
+                      .format(0, testacc, testf1))
+        return {'devacc': 0, 'acc': testacc, 'f1': testf1,
+                'ndev': len(trainA_3), 'ntest': len(testA_3)}
