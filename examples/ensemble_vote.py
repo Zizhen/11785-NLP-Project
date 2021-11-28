@@ -14,10 +14,10 @@ import logging
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('sentence-transformers/paraphrase-distilroberta-base-v2')
 model2 = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
-# from allennlp_models import pretrained
+from allennlp_models import pretrained
 # load pretrained lstm
-# predictor = pretrained.load_predictor(
-#     'tagging-fine-grained-crf-tagger', cuda_device=0)
+predictor = pretrained.load_predictor(
+    'tagging-fine-grained-crf-tagger', cuda_device=0)
 
 import sklearn
 
@@ -87,14 +87,14 @@ def batcher(params, batch):
 
     for sent in batch:
         # lstm embedding
-#         input = {"sentence": ' '.join(sent)}
-#         with predictor.capture_model_internals('encoder') as internals:
-#             outputs = predictor.predict_json(input)
-#             for k, v in internals.items():
-#                 embedding = v['output']
+        input = {"sentence": ' '.join(sent)}
+        with predictor.capture_model_internals('encoder') as internals:
+            outputs = predictor.predict_json(input)
+            for k, v in internals.items():
+                embedding = v['output']
 
-#         sentvec_lstm = np.array(embedding)[0]
-#         sentvec_lstm = np.mean(sentvec_lstm, 0)
+        sentvec_lstm = np.array(embedding)[0]
+        sentvec_lstm = np.mean(sentvec_lstm, 0)
         sentvec_roberta = model.encode(sent)
         sentvec_roberta = np.mean(sentvec_roberta, 0)
 
@@ -110,7 +110,7 @@ def batcher(params, batch):
             sentvec_glove.append(vec)
         sentvec_glove = np.mean(sentvec_glove, 0)
         
-        concatenated = np.concatenate((sentvec_roberta, sentvec_mpnet, sentvec_glove))
+        concatenated = np.concatenate((sentvec_roberta, sentvec_lstm, sentvec_glove))
         # concatenated = np.concatenate((sentvec_roberta, []))
         # concatenated = np.concatenate((sentvec_glove, sentvec_roberta))
 
@@ -137,7 +137,7 @@ params_senteval['classifier'] = {'nhid': 500, 'optim': 'rmsprop', 'batch_size': 
 
 logging.basicConfig(format='%(asctime)s : %(message)s', level=logging.DEBUG,
 handlers=[
-    logging.FileHandler("benchmark-result/mpnet-glove-ensemble-linear1000.log"),
+    logging.FileHandler("benchmark-result/vote-ensemble.log"),
     logging.StreamHandler()
 ])
 
