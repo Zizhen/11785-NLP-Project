@@ -6,16 +6,15 @@
 #
 
 from __future__ import absolute_import, division, unicode_literals
-
 import sys
 import io
 import numpy as np
 import logging
 from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('sentence-transformers/paraphrase-distilroberta-base-v2')
-model2 = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+from allennlp_models import pretrained
 
-import sklearn
+for k, v in logging.root.manager.loggerDict.items():
+    logging.getLogger(k).disabled = True
 
 # Set PATHs
 PATH_TO_SENTEVAL = '../'
@@ -26,7 +25,6 @@ PATH_TO_VEC = 'glove/glove.840B.300d.txt'
 # import SentEval
 sys.path.insert(0, PATH_TO_SENTEVAL)
 import senteval
-
 
 # Create dictionary
 def create_dictionary(sentences, threshold=0):
@@ -55,6 +53,8 @@ def create_dictionary(sentences, threshold=0):
     return id2word, word2id
 
 # Get word vectors from vocabulary (glove, word2vec, fasttext ..)
+
+
 def get_wordvec(path_to_vec, word2id):
     word_vec = {}
 
@@ -77,17 +77,36 @@ def prepare(params, samples):
     params.wvec_dim = 300
     return
 
+
+# load transformer
+model = SentenceTransformer(
+    'sentence-transformers/paraphrase-distilroberta-base-v2')
+
+# load pretrained lstm
+predictor = pretrained.load_predictor(
+    'tagging-fine-grained-crf-tagger', cuda_device=0)
+
+
 def batcher(params, batch):
     batch = [sent if sent != [] else ['.'] for sent in batch]
     embeddings = []
 
     for sent in batch:
+        # lstm embedding
+        input = {"sentence": ' '.join(sent)}
+        with predictor.capture_model_internals('encoder') as internals:
+            outputs = predictor.predict_json(input)
+            for k, v in internals.items():
+                embedding = v['output']
+
+        sentvec_lstm = np.array(embedding)[0]
+        sentvec_lstm = np.mean(sentvec_lstm, 0)
+
+        # roberta embedding
         sentvec_roberta = model.encode(sent)
         sentvec_roberta = np.mean(sentvec_roberta, 0)
 
-        sentvec_mpnet = model2.encode(sent)
-        sentvec_mpnet = np.mean(sentvec_mpnet, 0)
-
+        # glove embedding
         sentvec_glove = []
         for word in sent:
             if word in params.word_vec:
@@ -96,17 +115,11 @@ def batcher(params, batch):
             vec = np.zeros(params.wvec_dim)
             sentvec_glove.append(vec)
         sentvec_glove = np.mean(sentvec_glove, 0)
-        
-        concatenated = np.concatenate((sentvec_roberta, sentvec_mpnet, sentvec_glove))
-        # concatenated = np.concatenate((sentvec_roberta, []))
-        # concatenated = np.concatenate((sentvec_glove, sentvec_roberta))
 
-        # print("roberta: ", np.sum(sentvec_roberta**2))
-        # print("glove: ", np.sum(sentvec_glove**2))
-        # norm = np.linalg.norm(concatenated)
-        # print("normalized: ", np.sum((concatenated/norm)**2))
-        
-        # concatenated /= norm
+        # concat
+        concatenated = np.concatenate(
+            (sentvec_roberta, sentvec_glove, sentvec_lstm))
+
         embeddings.append(concatenated)
 
     embeddings = np.vstack(embeddings)
@@ -117,16 +130,16 @@ def batcher(params, batch):
 params_senteval = {'task_path': PATH_TO_DATA, 'usepytorch': True, 'kfold': 5}
 # params_senteval['classifier'] = {'nhid': 0, 'optim': 'rmsprop', 'batch_size': 128,
 #                                  'tenacity': 3, 'epoch_size': 2}
-params_senteval['classifier'] = {'nhid': 500, 'optim': 'rmsprop', 'batch_size': 128,
-                                 'tenacity': 3, 'epoch_size': 1, 'dropout': 0.1, 'max_epoch': 200}
+
+params_senteval['classifier'] = {'nhid': 600, 'optim': 'adam', 'batch_size': 128,
+                                 'tenacity': 3, 'epoch_size': 2}
 
 # Set up logger
-
 logging.basicConfig(format='%(asctime)s : %(message)s', level=logging.DEBUG,
-handlers=[
-    logging.FileHandler("benchmark-result/mpnet-glove-ensemble-linear1000.log"),
-    logging.StreamHandler()
-])
+                    handlers=[
+                        logging.FileHandler("benchmark-result/test.log"),
+                        logging.StreamHandler()
+                    ])
 
 if __name__ == "__main__":
     se = senteval.engine.SE(params_senteval, batcher, prepare)
@@ -140,7 +153,7 @@ if __name__ == "__main__":
     #                   'Length', 'WordContent', 'Depth', 'TopConstituents',
     #                   'BigramShift', 'Tense', 'SubjNumber', 'ObjNumber',
     #                   'OddManOut', 'CoordinationInversion']
+    # transfer_tasks = ['SNLI']
     transfer_tasks = ['MRPC']
-    # transfer_tasks = ['MR', 'CR', 'MPQA', 'SUBJ', 'SST2', 'SST5', 'TREC']
     results = se.eval(transfer_tasks)
     print(results)
