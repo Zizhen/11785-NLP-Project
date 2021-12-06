@@ -12,14 +12,19 @@ cd examples
 python bow.py
 
 You should also install the below libraries through their git repo:
+
 https://github.com/UKPLab/sentence-transformers
+
 https://github.com/allenai/allennlp
 
 # python scripts and purposes
 
 examples/bow.py : raw implementation from senteval that operates on GloVe embeddings
+
 examples/lstm.py : modification from raw implementation that operates on LSTM embeddings
+
 examples/sent_trans_eval.py : modification from raw implementation that operates on distilRoberta embeddings
 
 examples/ensemble_baseline.py : baseline concatenation of GloVe and distilRoberta
+
 examples/ensemble_three_concat.py : concatenating embeddings from GloVe, distilRoberta and LSTM 
