@@ -17,7 +17,7 @@ https://github.com/UKPLab/sentence-transformers
 
 https://github.com/allenai/allennlp
 
-# python scripts and purposes
+# execution scripts and purposes
 
 examples/bow.py : raw implementation from senteval that operates on GloVe embeddings
 
