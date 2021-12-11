@@ -52,30 +52,34 @@ class MRPCEval(object):
         return mrpc_data
 
     def run(self, params, batcher):
-        mrpc_embed = {'train': {}, 'test': {}}
+        if not params.load_embedding:
+            mrpc_embed = {'train': {}, 'test': {}}
 
-        for key in self.mrpc_data:
-            logging.info('Computing embedding for {0}'.format(key))
-            # Sort to reduce padding
-            text_data = {}
-            sorted_corpus = sorted(zip(self.mrpc_data[key]['X_A'],
-                                       self.mrpc_data[key]['X_B'],
-                                       self.mrpc_data[key]['y']),
-                                   key=lambda z: (len(z[0]), len(z[1]), z[2]))
+            for key in self.mrpc_data:
+                logging.info('Computing embedding for {0}'.format(key))
+                # Sort to reduce padding
+                text_data = {}
+                sorted_corpus = sorted(zip(self.mrpc_data[key]['X_A'],
+                                        self.mrpc_data[key]['X_B'],
+                                        self.mrpc_data[key]['y']),
+                                    key=lambda z: (len(z[0]), len(z[1]), z[2]))
 
-            text_data['A'] = [x for (x, y, z) in sorted_corpus]
-            text_data['B'] = [y for (x, y, z) in sorted_corpus]
-            text_data['y'] = [z for (x, y, z) in sorted_corpus]
+                text_data['A'] = [x for (x, y, z) in sorted_corpus]
+                text_data['B'] = [y for (x, y, z) in sorted_corpus]
+                text_data['y'] = [z for (x, y, z) in sorted_corpus]
 
-            for txt_type in ['A', 'B']:
-                mrpc_embed[key][txt_type] = []
-                for ii in range(0, len(text_data['y']), params.batch_size):
-                    batch = text_data[txt_type][ii:ii + params.batch_size]
-                    embeddings = batcher(params, batch)
-                    mrpc_embed[key][txt_type].append(embeddings)
-                mrpc_embed[key][txt_type] = np.vstack(mrpc_embed[key][txt_type])
-            mrpc_embed[key]['y'] = np.array(text_data['y'])
-            logging.info('Computed {0} embeddings'.format(key))
+                for txt_type in ['A', 'B']:
+                    mrpc_embed[key][txt_type] = []
+                    for ii in range(0, len(text_data['y']), params.batch_size):
+                        batch = text_data[txt_type][ii:ii + params.batch_size]
+                        embeddings = batcher(params, batch)
+                        mrpc_embed[key][txt_type].append(embeddings)
+                    mrpc_embed[key][txt_type] = np.vstack(mrpc_embed[key][txt_type])
+                mrpc_embed[key]['y'] = np.array(text_data['y'])
+                logging.info('Computed {0} embeddings'.format(key))
+            np.save(params.load_embedding_path + '/mrpc_embedding.npy', mrpc_embed)
+        else:
+            mrpc_embed = np.load(params.load_embedding_path + '/mrpc_embedding.npy', allow_pickle=True).item()
 
         # Train
         trainA = mrpc_embed['train']['A']

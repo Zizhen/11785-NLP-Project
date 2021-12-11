@@ -19,7 +19,8 @@ from senteval.tools.validation import InnerKFoldClassifier
 
 
 class BinaryClassifierEval(object):
-    def __init__(self, pos, neg, seed=1111):
+    def __init__(self, task, pos, neg, seed=1111):
+        self.task = task
         self.seed = seed
         self.samples, self.labels = pos + neg, [1] * len(pos) + [0] * len(neg)
         self.n_samples = len(self.samples)
@@ -35,19 +36,25 @@ class BinaryClassifierEval(object):
             return [line.split() for line in f.read().splitlines()]
 
     def run(self, params, batcher):
-        enc_input = []
         # Sort to reduce padding
         sorted_corpus = sorted(zip(self.samples, self.labels),
-                               key=lambda z: (len(z[0]), z[1]))
+                            key=lambda z: (len(z[0]), z[1]))
         sorted_samples = [x for (x, y) in sorted_corpus]
         sorted_labels = [y for (x, y) in sorted_corpus]
-        logging.info('Generating sentence embeddings')
-        for ii in range(0, self.n_samples, params.batch_size):
-            batch = sorted_samples[ii:ii + params.batch_size]
-            embeddings = batcher(params, batch)
-            enc_input.append(embeddings)
-        enc_input = np.vstack(enc_input)
-        logging.info('Generated sentence embeddings')
+        if not params.load_embedding:
+            enc_input = []
+            logging.info('Generating sentence embeddings')
+            for ii in range(0, self.n_samples, params.batch_size):
+                batch = sorted_samples[ii:ii + params.batch_size]
+                embeddings = batcher(params, batch)
+                enc_input.append(embeddings)
+            enc_input = np.vstack(enc_input)
+            logging.info('Generated sentence embeddings')
+            np.save(params.load_embedding_path + '/' + self.task + '_embedding.npy', enc_input)
+        else:
+            print(params.load_embedding_path + '/' + self.task + '_embedding.npy')
+            enc_input = np.load(params.load_embedding_path + '/' + self.task + '_embedding.npy', allow_pickle=True)
+
 
         config = {'nclasses': 2, 'seed': self.seed,
                   'usepytorch': params.usepytorch,
@@ -65,7 +72,7 @@ class CREval(BinaryClassifierEval):
         logging.debug('***** Transfer task : CR *****\n\n')
         pos = self.loadFile(os.path.join(task_path, 'custrev.pos'))
         neg = self.loadFile(os.path.join(task_path, 'custrev.neg'))
-        super(self.__class__, self).__init__(pos, neg, seed)
+        super(self.__class__, self).__init__('cr', pos, neg, seed)
 
 
 class MREval(BinaryClassifierEval):
@@ -73,7 +80,7 @@ class MREval(BinaryClassifierEval):
         logging.debug('***** Transfer task : MR *****\n\n')
         pos = self.loadFile(os.path.join(task_path, 'rt-polarity.pos'))
         neg = self.loadFile(os.path.join(task_path, 'rt-polarity.neg'))
-        super(self.__class__, self).__init__(pos, neg, seed)
+        super(self.__class__, self).__init__('mr', pos, neg, seed)
 
 
 class SUBJEval(BinaryClassifierEval):
@@ -81,7 +88,7 @@ class SUBJEval(BinaryClassifierEval):
         logging.debug('***** Transfer task : SUBJ *****\n\n')
         obj = self.loadFile(os.path.join(task_path, 'subj.objective'))
         subj = self.loadFile(os.path.join(task_path, 'subj.subjective'))
-        super(self.__class__, self).__init__(obj, subj, seed)
+        super(self.__class__, self).__init__('subj', obj, subj, seed)
 
 
 class MPQAEval(BinaryClassifierEval):
@@ -89,4 +96,4 @@ class MPQAEval(BinaryClassifierEval):
         logging.debug('***** Transfer task : MPQA *****\n\n')
         pos = self.loadFile(os.path.join(task_path, 'mpqa.pos'))
         neg = self.loadFile(os.path.join(task_path, 'mpqa.neg'))
-        super(self.__class__, self).__init__(pos, neg, seed)
+        super(self.__class__, self).__init__('mpqa', pos, neg, seed)

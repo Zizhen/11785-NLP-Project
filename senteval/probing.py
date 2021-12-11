@@ -55,24 +55,28 @@ class PROBINGEval(object):
                 self.task_data[split]['y'][i] = self.tok2label[y]
 
     def run(self, params, batcher):
-        task_embed = {'train': {}, 'dev': {}, 'test': {}}
-        bsize = params.batch_size
-        logging.info('Computing embeddings for train/dev/test')
-        for key in self.task_data:
-            # Sort to reduce padding
-            sorted_data = sorted(zip(self.task_data[key]['X'],
-                                     self.task_data[key]['y']),
-                                 key=lambda z: (len(z[0]), z[1]))
-            self.task_data[key]['X'], self.task_data[key]['y'] = map(list, zip(*sorted_data))
+        if not params.load_embedding:
+            task_embed = {'train': {}, 'dev': {}, 'test': {}}
+            bsize = params.batch_size
+            logging.info('Computing embeddings for train/dev/test')
+            for key in self.task_data:
+                # Sort to reduce padding
+                sorted_data = sorted(zip(self.task_data[key]['X'],
+                                        self.task_data[key]['y']),
+                                    key=lambda z: (len(z[0]), z[1]))
+                self.task_data[key]['X'], self.task_data[key]['y'] = map(list, zip(*sorted_data))
 
-            task_embed[key]['X'] = []
-            for ii in range(0, len(self.task_data[key]['y']), bsize):
-                batch = self.task_data[key]['X'][ii:ii + bsize]
-                embeddings = batcher(params, batch)
-                task_embed[key]['X'].append(embeddings)
-            task_embed[key]['X'] = np.vstack(task_embed[key]['X'])
-            task_embed[key]['y'] = np.array(self.task_data[key]['y'])
-        logging.info('Computed embeddings')
+                task_embed[key]['X'] = []
+                for ii in range(0, len(self.task_data[key]['y']), bsize):
+                    batch = self.task_data[key]['X'][ii:ii + bsize]
+                    embeddings = batcher(params, batch)
+                    task_embed[key]['X'].append(embeddings)
+                task_embed[key]['X'] = np.vstack(task_embed[key]['X'])
+                task_embed[key]['y'] = np.array(self.task_data[key]['y'])
+            logging.info('Computed embeddings')
+            np.save(params.load_embedding_path + '/' + self.task + '_embedding.npy', task_embed)
+        else:
+            task_embed = np.load(params.load_embedding_path + '/' + self.task + '_embedding.npy', allow_pickle=True).item()
 
         config_classifier = {'nclasses': self.nclasses, 'seed': self.seed,
                              'usepytorch': params.usepytorch,
